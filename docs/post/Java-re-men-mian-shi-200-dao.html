@@ -10,10 +10,12 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 1、Java中HashMap的原理
+<meta name="description" content="
+# 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。">
 <meta property="og:title" content="Java热门面试200道">
-<meta property="og:description" content="# 1、Java中HashMap的原理
+<meta property="og:description" content="
+# 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Mucheen.github.io/post/Java-re-men-mian-shi-200-dao.html">
@@ -142,7 +144,30 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 非聚簇索引：指索引和数据是分开存储的·。非聚簇索引的叶子节点存储的是索引列的值和指向实际数据的指针（即行号或主键）。一张表可以有多个非索引聚簇，每个索引都有自己的存储顺序。<br>
 <a href="url">https://blog.csdn.net/whs_8792/article/details/143865410</a></p>
 <h1>13、MySQL中的回表是什么？</h1>
-<p>定义：当查询的条件字段中只命中非聚簇索引的一部分字段时，MySQL需要根据</p></div>
+<p>定义：当查询的条件字段中只命中非聚簇索引的一部分字段时，MySQL需要根据索引中的记录再到原表里查找完整的数据，这个过程叫做回表查询。</p>
+<h1>14、MySQL中使用索引一定有效吗？如何排查索引效果？</h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/37580697-585c-4b13-9c0e-42a394fc2ed7"><img src="https://github.com/user-attachments/assets/37580697-585c-4b13-9c0e-42a394fc2ed7" alt="image" style="max-width: 100%;"></a><br>
+<strong>索引失效场景</strong>：<br>
+-使用了联合索引却不符合最左前缀<br>
+-索引中使用了运算<br>
+-索引上使用了函数也会失效<br>
+-like/or的随意使用<br>
+-随意的字段类型使用<br>
+-不同的参数也会导致索引失效<br>
+-表中两个不同字段进行比较<br>
+-使用了!=、&lt;&gt;<br>
+-使用了is not null/order by<br>
+<strong>索引生效但是查询变慢</strong>：<br>
+-索引也是需要占空间的<br>
+-对大字段建立了索引<br>
+-对重复值较多的字段建立索引<br>
+<a href="url">https://blog.csdn.net/2401_84419325/article/details/139390233</a></p>
+<h1>15、RabbitMQ怎么实现延迟队列？</h1>
+<p><strong>延迟队列常用于需要在特定时间后执行某些操作的场景（比如下单未付款）</strong><br>
+1）创建一个普通队列作为消息的初始存放地，并设置消息的过期时间（TTL）。<br>
+2）当消息过期时，RabbitMQ 会将其转发到绑定的死信交换机（DLX）。<br>
+3）在死信交换机中，消息被路由到延迟队列，消费者可以从延迟队列中取出消息。<br>
+<a href="url">https://blog.csdn.net/qq_51226710/article/details/142700436</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
