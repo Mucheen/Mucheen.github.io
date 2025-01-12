@@ -10,12 +10,10 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="
-# 1、Java中HashMap的原理
+<meta name="description" content="# 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。">
 <meta property="og:title" content="Java热门面试200道">
-<meta property="og:description" content="
-# 1、Java中HashMap的原理
+<meta property="og:description" content="# 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Mucheen.github.io/post/Java-re-men-mian-shi-200-dao.html">
@@ -167,7 +165,12 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 1）创建一个普通队列作为消息的初始存放地，并设置消息的过期时间（TTL）。<br>
 2）当消息过期时，RabbitMQ 会将其转发到绑定的死信交换机（DLX）。<br>
 3）在死信交换机中，消息被路由到延迟队列，消费者可以从延迟队列中取出消息。<br>
-<a href="url">https://blog.csdn.net/qq_51226710/article/details/142700436</a></p></div>
+<a href="url">https://blog.csdn.net/qq_51226710/article/details/142700436</a></p>
+<h1>16、MySQL中的索引数量是否越多越好？为什么？</h1>
+<p>1）索引越多，更新的速度越慢。<br>
+2）太多的索引会影响mysql查询优化器的选择时间。<br>
+3）更新的索引需要更多的空间。<br>
+<strong>索引的作用</strong>：索引减少了存储引擎需要扫描的数据量；帮助我们进行排序，避免使用临时表；索引可以随机IO转换为顺序IO</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
