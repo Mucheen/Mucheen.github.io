@@ -205,11 +205,34 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 <strong>事务实现</strong>：MySQL的InnoDB存储引擎是MySQL默认的存储引擎，提供了完整的事务支持。通过锁机制、日志系统、缓冲池和检查点等机制来实现事务管理。<br>
 <strong>日志机制</strong>：redo log和undo log<br>
 <strong>锁机制</strong>：行级锁、表级锁、间隙锁<br>
+<strong>事务的隔离级别</strong>：读未提交（脏读）、读已提交（不可重复读）、可重复读（幻读）、串行化<br>
+<strong>事务的管理和配置</strong>：自动提交、显式控制事物、使用保存点<br>
 <strong>事务的生命周期：</strong><br>
 1）事务开始：start transaction/start<br>
 2）事务操作：在事务中执行一系列的SQL操作，如插入、更新、删除<br>
 3）事务提交：所有操作成功执行，通过COMMIT命令持久化<br>
-4）事务回滚：通过ROLLBACK命令撤销事务中的所有操作</p></div>
+4）事务回滚：通过ROLLBACK命令撤销事务中的所有操作<br>
+<a href="url">https://blog.csdn.net/Flying_Fish_roe/article/details/143992698</a></p>
+<h1>21、MySQL事务的二阶段提交是什么？</h1>
+<p>定义：分布式事务协议，用于保证在分布式系统中有节点对事务的一致性。这种协议确保了即使在部分系统故障的情况下，也能保持数据的一致性。二阶段提交主要应用于跨多个数据库或资源管理器的场景。<br>
+包括两个阶段：准备阶段和提交阶段<br>
+准备阶段：<br>
+协调者向所有参与者发送“准备请求”——&gt;每个参与者判断能否执行——&gt;可以，则返回，否则拒绝——&gt;协调者等着回复，若其中一个拒绝，则取消事务<br>
+提交阶段：<br>
+参与者准备好，协调者发送“提交”命令——&gt;参与者接收命令，提交事务，释放资源——&gt;参与者完成后发送确认——&gt;所有参与者确认后，认为事物已成功提交，结束事务（若未能从所有参与者那里获得确认，则协调者发出回滚，所有参与者撤销事务）<br>
+<strong>缺陷</strong>：性能开销大、阻塞问题、单点故障</p>
+<h1>22、MySQL中长事务可能会导致哪些问题？</h1>
+<h1>23、MySQL中的MVCC是什么？</h1>
+<h1>24、MySQL中的事务隔离级别有哪些？</h1>
+<h1>25、MySQL默认的事务隔离级别是什么？为什么要选择这个级别？</h1>
+<h1>26、MySQL中有哪些锁类型？</h1>
+<h1>27、MySQL中的乐观锁和悲观锁是什么？</h1>
+<h1>28、MySQL中如果发生死锁应该如何解决？</h1>
+<h1>29、MySQL中count(*)、count(1)、count（字段名）有什么区别？</h1>
+<h1>30、MySQL中如果进行SQL调优？</h1>
+<h1>31、如何使用MySQL的EXPLAIN语句进行查询分析？</h1>
+<h1>32、MySQL中如何解决深度分页的问题？</h1>
+<h1>33、什么是MySQL的主从同步机制？它们是如何实现的？</h1></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
