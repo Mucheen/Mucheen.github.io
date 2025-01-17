@@ -205,7 +205,7 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 <strong>事务实现</strong>：MySQL的InnoDB存储引擎是MySQL默认的存储引擎，提供了完整的事务支持。通过锁机制、日志系统、缓冲池和检查点等机制来实现事务管理。<br>
 <strong>日志机制</strong>：redo log和undo log<br>
 <strong>锁机制</strong>：行级锁、表级锁、间隙锁<br>
-<strong>事务的隔离级别</strong>：读未提交（脏读）、读已提交（不可重复读）、可重复读（幻读）、串行化<br>
+<strong>事务的隔离级别</strong>：读未提交（脏读）、读已提交（不可重复读）、可重复读（解决不可重复读）、串行化（幻读）<br>
 <strong>事务的管理和配置</strong>：自动提交、显式控制事物、使用保存点<br>
 <strong>事务的生命周期：</strong><br>
 1）事务开始：start transaction/start<br>
@@ -223,14 +223,92 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 <strong>缺陷</strong>：性能开销大、阻塞问题、单点故障<br>
 <a href="url">https://blog.csdn.net/qq_33240556/article/details/142548096</a></p>
 <h1>22、MySQL中长事务可能会导致哪些问题？</h1>
+<p><strong>概念</strong>：长事务指的是运行时间比较长，长时间未提交的事务。<br>
+<strong>出现的问题</strong>：<br>
+1、锁定资源<br>
+2、增加死锁风险<br>
+3、占用系统资源<br>
+4、可能导致主从延迟<br>
+5、影响数据一致性<br>
+<strong>如何解决</strong>：<br>
+1、优化事务<br>
+2、合理设计事务<br>
+3、监控长事务<br>
+4、设置超时参数<br>
+5、及时提交或回滚<br>
+<a href="url">https://blog.csdn.net/m0_63331248/article/details/140543917</a></p>
 <h1>23、MySQL中的MVCC是什么？</h1>
+<p><strong>定义</strong>：MySQL数据库用来处理并发访问的技术，特别是在InnoDB存储引擎中，MVCC允许多个事务并发执行而不互相干扰，确保数据的一致性和隔离性。<br>
+<strong>基本原理</strong>：<br>
+事务标识和版本控制<br>
+数据化版本管理<br>
+读取数据的版本选择<br>
+提交和回滚<br>
+<strong>MVCC的优势</strong>：<br>
+1、提交并发性<br>
+2、避免锁竞争<br>
+3、实现一致性读<br>
+<strong>挑战和限制</strong>：<br>
+1、内存和磁盘空间消耗<br>
+2、更新操作的开销<br>
+3、脏读和幻读的可能性<br>
+<a href="url">https://www.cnblogs.com/eiffelzero/p/18607443</a></p>
 <h1>24、MySQL中的事务隔离级别有哪些？</h1>
+<p><strong>事务的4种隔离级别</strong>：<br>
+1、读未提交：解决脏写问题（一个事务还未提交之前，其对数据的修改被另一个事务所看见或覆盖的情况）<br>
+2、读已提交：解决脏读问题（当一个事务读取了另一个事务尚未提交的数据时，就发生了脏读）<br>
+3、可重复读：解决不可重复读问题（在同一个事务内，多次从数据库读取数据，读取到的值不一样）<br>
+4、串行化：    解决幻读问题（一个事物两次查询中查询到的结果新出了原来没有的）<br>
+<a href="url">https://blog.csdn.net/WLKQNYJY_SHT/article/details/139938299</a></p>
 <h1>25、MySQL默认的事务隔离级别是什么？为什么要选择这个级别？</h1>
+<p>MySQL中默认的事务隔离级别是可重复读，InnoDB存储引擎的默认事务隔离级别。<br>
+<strong>为什么</strong>：<br>
+1、解决不可重复读问题<br>
+2、较高的并发性能<br>
+3、减少幻读问题的影响（下一键锁）<br>
+4、适用于大多数应用场景<br>
+（选择这个级别是因为它在<strong>一致性</strong>和<strong>并发性</strong>之间提供了合理的折中，能够解决不可重复读和幻读等常见问题，并且在大多数应用场景下提供了较高的性能；通过<strong>下一键锁</strong>减少了幻读问题的影响）<br>
+<a href="url">https://www.cnblogs.com/eiffelzero/p/18607447</a></p>
 <h1>26、MySQL中有哪些锁类型？</h1>
+<p><strong>（1）分类</strong>：<br>
+<strong>对数据操作的粒度来分</strong>：<br>
+表锁：操作时会锁定整个表<br>
+行锁：操作时会锁定当前操作行<br>
+<strong>从对数据操作的类型分</strong>：<br>
+读锁（共享锁）：针对同一份数据，多个读操作可以同时进行而不会互相影响<br>
+写锁（排它锁）：当前操作没有完成之前，它会阻断其他写锁和读锁<br>
+<strong>（2）Mysql锁</strong>：<br>
+<strong>特性：</strong><br>
+表级锁（偏向MyISAM存储引擎；不会死锁，锁粒度大-&gt;发烧锁冲突的概率最高）<br>
+行级锁（偏向InnoDB存储引擎；会死锁；锁粒度小—&gt;发生锁冲突的概率最低）<br>
+页面锁<br>
+<strong>（3）MyISAM表锁</strong>：在查询语句会自动加读锁；更新操作会自动加写锁，用户无需干预<br>
+<strong>（4）InnoDB表锁</strong>：共享锁和排它锁<br>
+<a href="url">https://blog.csdn.net/qq_28419035/article/details/140929110</a></p>
 <h1>27、MySQL中的乐观锁和悲观锁是什么？</h1>
+<p><strong>乐观锁</strong>：认为在大多数情况下，并发事务之间不会发生冲突（在提交更新之前判断是否被修改，被修改则考虑更新或抛出异常），用于读多写少的情况。<br>
+<strong>悲观锁</strong>：认为在并发环境中，数据很可能被其他事物修改（在开始时就对操作数据进行加锁，直到事务完成并提交或回滚才释放锁），用于写少读多<br>
+<a href="url">https://blog.csdn.net/weixin_69477306/article/details/143972939</a></p>
 <h1>28、MySQL中如果发生死锁应该如何解决？</h1>
+<p>（1）死锁预防：预防死锁发生的任一条件：破坏互斥条件（较难）、破坏占有等待事件、破坏不剥夺条件、破坏循环等待条件<br>
+（2）死锁避免：动态地判断当前系统是否进入安全状态来避免死锁（银行家算法）<br>
+（3）死锁检测：资源分配图法、循环等待检测法<br>
+（4）死锁恢复：进程终止、资源剥夺、回滚</p>
 <h1>29、MySQL中count(*)、count(1)、count（字段名）有什么区别？</h1>
-<h1>30、MySQL中如果进行SQL调优？</h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9ae46d69-4d7a-4375-9f03-b41ad6a07cf5"><img src="https://github.com/user-attachments/assets/9ae46d69-4d7a-4375-9f03-b41ad6a07cf5" alt="Image" style="max-width: 100%;"></a><br>
+<a href="url">https://blog.csdn.net/x1234w4321/article/details/143904798</a></p>
+<h1>30、MySQL中如何进行SQL调优？</h1>
+<p>（1）使用恰当的索引<br>
+（2）避免全表扫描<br>
+（3）优化查询语句<br>
+（4）合理使用JOIN<br>
+（5）使用查询缓存（通过控制应用层缓存：Redis等）<br>
+（6）避免使用函数操作索引列（会放弃索引，使用全表扫描）<br>
+（7）使用EXPLAIN分析查询<br>
+（8）限制返回结果集<br>
+（9）优化表结构<br>
+（10）事务管理<br>
+<a href="url">https://blog.csdn.net/ethnicitybeta/article/details/142489059</a></p>
 <h1>31、如何使用MySQL的EXPLAIN语句进行查询分析？</h1>
 <h1>32、MySQL中如何解决深度分页的问题？</h1>
 <h1>33、什么是MySQL的主从同步机制？它们是如何实现的？</h1></div>
