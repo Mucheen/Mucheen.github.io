@@ -306,20 +306,67 @@ MySQL中默认的事务隔离级别是可重复读，InnoDB存储引擎的默认
 [https://blog.csdn.net/unbuntu_luo/article/details/143944871](url)
 
 # 34、为什么RocketMQ不使用Zookeeper作为注册中心呢？而选择自己实现NameServer?
+**目的**：
+1、对于注册中心，RocketMQ集群需要保存到元数据非常少，完全没有必要引入Zookeeper这种重量级的注册中心。
+2、RocketMQ实现了基于raft协议的DLedger算法，可以保证Broker集群高可用，不用依赖Zookeeper
+3、NameServer是RocketMQ内部组件，实现简单，易于扩展，不用考虑运维复杂性。
+[https://cloud.tencent.com/developer/article/2118883](url)
 
 # 35、RabbitMQ中消息什么时候会进入死信交换机？
+1、消息被拒绝并且不重新入队列
+2、消息过期
+3、队列达到最大长度
+4、消息被消费者消费次数达到限制
+[https://blog.csdn.net/weixin_41992498/article/details/139986162](url)
 
 # 36、RabbitMQ中无法路由的消息会去到哪里？
+1、消息直接被丢弃（默认行为）
+2、配置了备用交换机(Alternate Exchange)
+3、启用消息的返回机制（Mandatory标志）
+4、配置了死信交换机
+5、配置了延迟队列
 
 # 37、Kafka为什么要抛弃Zookeeper?
+**原因**：
+1、复杂性增加：独立于Kafka的外部组件，需要单独部署和维护
+2、性能瓶颈：在高负载场景下，分区数量增加，Zookeeper需要存储更多的信息，监听延迟增加，影响性能
+3、一致性问题：两者的一致性模型有所不同，影响消息传递的可靠性和系统稳定性
 
 # 38、Kalfa中Zookeeper的作用？
+1、Broker注册与管理
+2、Topic管理
+3、Controller选举
+4、Partition Leader选举
+5、消费者组协调
+6、监控与通知
+[https://blog.csdn.net/qq_33240556/article/details/136046445](url)
 
-# 39、为什么Java8移除了永久代（PermGen）并引入了元空间（Metaspace）?
+# 39、说一下Kalfa中关于事务消息的实现？
+工作流程：
+1、生产者开始事务；
+2、生产者发送消息；
+3、提交事务
+4、回滚事务
+5、事务状态管理
+[https://blog.csdn.net/weixin_44837153/article/details/136474339](url)
 
-# 40、说一下Kalfa中关于事务消息的实现？
+# 40、为什么Java8移除了永久代（PermGen）并引入了元空间（Metaspace）?
+**永久代缺陷**：
+1、固定大小的内存区域；
+2、垃圾回收的复杂性
+3、使用限制
+**元空间的优点**：
+1、动态扩展
+2、垃圾回收的优化
+3、更好的内存利用率
+4、减少OutOfMemoryError
+**其他原因**：
+1、促进JVM的融合
+2、优化内存管理
+[https://blog.csdn.net/qq_44391293/article/details/141429570](url)
 
 # 41、说一下RocketMQ中关于事务消息的实现？
+
 
 # 42、RocketMQ的事务消息有什么缺点？你还了解过别的事务消息实现吗？
 

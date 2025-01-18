@@ -343,12 +343,58 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 <strong>缺点</strong>：数据一致性问题、延迟问题、故障恢复复杂性问题<br>
 <a href="url">https://blog.csdn.net/unbuntu_luo/article/details/143944871</a></p>
 <h1>34、为什么RocketMQ不使用Zookeeper作为注册中心呢？而选择自己实现NameServer?</h1>
+<p><strong>目的</strong>：<br>
+1、对于注册中心，RocketMQ集群需要保存到元数据非常少，完全没有必要引入Zookeeper这种重量级的注册中心。<br>
+2、RocketMQ实现了基于raft协议的DLedger算法，可以保证Broker集群高可用，不用依赖Zookeeper<br>
+3、NameServer是RocketMQ内部组件，实现简单，易于扩展，不用考虑运维复杂性。<br>
+<a href="url">https://cloud.tencent.com/developer/article/2118883</a></p>
 <h1>35、RabbitMQ中消息什么时候会进入死信交换机？</h1>
+<p>1、消息被拒绝并且不重新入队列<br>
+2、消息过期<br>
+3、队列达到最大长度<br>
+4、消息被消费者消费次数达到限制<br>
+<a href="url">https://blog.csdn.net/weixin_41992498/article/details/139986162</a></p>
 <h1>36、RabbitMQ中无法路由的消息会去到哪里？</h1>
+<p>1、消息直接被丢弃（默认行为）<br>
+2、配置了备用交换机(Alternate Exchange)<br>
+3、启用消息的返回机制（Mandatory标志）<br>
+4、配置了死信交换机<br>
+5、配置了延迟队列</p>
 <h1>37、Kafka为什么要抛弃Zookeeper?</h1>
+<p><strong>原因</strong>：<br>
+1、复杂性增加：独立于Kafka的外部组件，需要单独部署和维护<br>
+2、性能瓶颈：在高负载场景下，分区数量增加，Zookeeper需要存储更多的信息，监听延迟增加，影响性能<br>
+3、一致性问题：两者的一致性模型有所不同，影响消息传递的可靠性和系统稳定性</p>
 <h1>38、Kalfa中Zookeeper的作用？</h1>
-<h1>39、为什么Java8移除了永久代（PermGen）并引入了元空间（Metaspace）?</h1>
-<h1>40、说一下Kalfa中关于事务消息的实现？</h1>
+<p>1、Broker注册与管理<br>
+2、Topic管理<br>
+3、Controller选举<br>
+4、Partition Leader选举<br>
+5、消费者组协调<br>
+6、监控与通知<br>
+<a href="url">https://blog.csdn.net/qq_33240556/article/details/136046445</a></p>
+<h1>39、说一下Kalfa中关于事务消息的实现？</h1>
+<p>工作流程：<br>
+1、生产者开始事务；<br>
+2、生产者发送消息；<br>
+3、提交事务<br>
+4、回滚事务<br>
+5、事务状态管理<br>
+<a href="url">https://blog.csdn.net/weixin_44837153/article/details/136474339</a></p>
+<h1>40、为什么Java8移除了永久代（PermGen）并引入了元空间（Metaspace）?</h1>
+<p><strong>永久代缺陷</strong>：<br>
+1、固定大小的内存区域；<br>
+2、垃圾回收的复杂性<br>
+3、使用限制<br>
+<strong>元空间的优点</strong>：<br>
+1、动态扩展<br>
+2、垃圾回收的优化<br>
+3、更好的内存利用率<br>
+4、减少OutOfMemoryError<br>
+<strong>其他原因</strong>：<br>
+1、促进JVM的融合<br>
+2、优化内存管理<br>
+<a href="url">https://blog.csdn.net/qq_44391293/article/details/141429570</a></p>
 <h1>41、说一下RocketMQ中关于事务消息的实现？</h1>
 <h1>42、RocketMQ的事务消息有什么缺点？你还了解过别的事务消息实现吗？</h1>
 <h1>43、为什么需要消息队列？</h1>
