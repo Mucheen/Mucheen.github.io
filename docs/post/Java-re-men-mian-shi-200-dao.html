@@ -340,7 +340,8 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 2、同步复制：主库提交事务时，必须等待所有的从库都确认事务已执行完毕，才能返回客户端<br>
 3、半异步复制：当主库提交事务时，至少等待一个从库确认已接收到该事务的二进制日志后才提交。<br>
 <strong>优点</strong>：提高读取性能、数据冗余、负载均衡、高可用行<br>
-<strong>缺点</strong>：数据一致性问题、延迟问题、故障恢复复杂性问题</p>
+<strong>缺点</strong>：数据一致性问题、延迟问题、故障恢复复杂性问题<br>
+<a href="url">https://blog.csdn.net/unbuntu_luo/article/details/143944871</a></p>
 <h1>34、为什么RocketMQ不使用Zookeeper作为注册中心呢？而选择自己实现NameServer?</h1>
 <h1>35、RabbitMQ中消息什么时候会进入死信交换机？</h1>
 <h1>36、RabbitMQ中无法路由的消息会去到哪里？</h1>
