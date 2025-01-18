@@ -310,8 +310,37 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 （10）事务管理<br>
 <a href="url">https://blog.csdn.net/ethnicitybeta/article/details/142489059</a></p>
 <h1>31、如何使用MySQL的EXPLAIN语句进行查询分析？</h1>
+<p><strong>作用</strong>：是MySQL提供的分析SQL查询执行计划的工具，用于了解查询语句的执行过程，帮助优化查询性能。（可以查看查询的执行顺序、所使用的索引、扫描的表、访问方法等信息）<br>
+<strong>输出字段包括</strong>：<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/011ad9f2-8608-4bfb-b53e-ce441bcaf6b4"><img src="https://github.com/user-attachments/assets/011ad9f2-8608-4bfb-b53e-ce441bcaf6b4" alt="Image" style="max-width: 100%;"></a><br>
+<strong>常见优化点</strong>：<br>
+1、优先使用合适的索引<br>
+2、优化扫描范围<br>
+3、减少扫描行数<br>
+4、消除临时表和文件排序<br>
+5、使用覆盖索引<br>
+<a href="url">https://www.cnblogs.com/eiffelzero/p/18607963</a></p>
 <h1>32、MySQL中如何解决深度分页的问题？</h1>
+<p><strong>问题</strong>：当使用LIMIT和OFFSET进行分页时，MySQL必须扫描OFFSET+LIMIT行，然后丢弃前OFFSET行。意味着随着分页的深入，MySQL需要扫描的行数越来越多，导致查询功能下降<br>
+<strong>如何优化</strong>：<br>
+1、使用索引优化查询<br>
+2、使用覆盖索引<br>
+3、利用标记分页<br>
+4、分区表<br>
+5、缓存结果<br>
+<a href="url">https://blog.csdn.net/2401_85373732/article/details/145061201</a></p>
 <h1>33、什么是MySQL的主从同步机制？它们是如何实现的？</h1>
+<p><strong>概念</strong>：是一种数据库复制技术，它通过将主服务器上的数据更改复制到一个或多个从服务器，实现数据的自动同步。<br>
+<strong>工作流程</strong>：<br>
+1、主库：接受客户端的写请求并将更改记录到二进制日志中<br>
+2、从库：从主库获取二进制日志并保存在中继日志中<br>
+3、从库：读取中继日志并执行其中的SQL语句，应用到自己的数据库中<br>
+<strong>同步方式</strong>:<br>
+1、异步复制（默认）：主库执行完事务后立即返回，数据的同步是通过从库异步拉取主库的二进制日志来完成的。<br>
+2、同步复制：主库提交事务时，必须等待所有的从库都确认事务已执行完毕，才能返回客户端<br>
+3、半异步复制：当主库提交事务时，至少等待一个从库确认已接收到该事务的二进制日志后才提交。<br>
+<strong>优点</strong>：提高读取性能、数据冗余、负载均衡、高可用行<br>
+<strong>缺点</strong>：数据一致性问题、延迟问题、故障恢复复杂性问题</p>
 <h1>34、为什么RocketMQ不使用Zookeeper作为注册中心呢？而选择自己实现NameServer?</h1>
 <h1>35、RabbitMQ中消息什么时候会进入死信交换机？</h1>
 <h1>36、RabbitMQ中无法路由的消息会去到哪里？</h1>
