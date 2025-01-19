@@ -445,9 +445,31 @@ TreeMap :元素按照键是排序，不重复，无索引的。值不做要求</
 6、注册主动配置的Bean<br>
 7、覆盖默认配置</p>
 <h1>55、如何理解SpringBoot中的starter?</h1>
+<p><strong>定义</strong>：是一个预配置的依赖项集合，用于快速启动特定功能或技术的开发。封装了相关的库和配置，使得开发者可以轻松引入所需功能。<br>
+<strong>作用</strong>：<br>
+1、快速启动项目<br>
+2、简化依赖管理<br>
+3、提供默认配置</p>
 <h1>56、Spring Boot是如何通过main方法启动web项目的？</h1>
-<p>---------------太多啦太多啦---------------------------------</p>
+<p><strong>启动过程</strong>：<br>
+1、初始化Spring环境：通过SpringApplication.run()方法来初始化Spring应用上下文，加载配置文件，创建并启动Spring容器<br>
+2、嵌入式Web服务器启动：Spring Boot内置了一个嵌入式Web服务器（如Tomcat），该服务器会在应用启动时自动启动并监听指定端口<br>
+3、加载Web组件：启动过程中，SpringBoot会自动配置和初始化所有的Web相关组件<br>
+4、处理请求：一旦Web服务器启动并监听端口，Spring MVC的DispatcherServlet会处理传入的Http请求，执行相应的控制器方法。<br>
+<a href="url">https://blog.csdn.net/sinat_53467514/article/details/137826992</a><br>
+---------------太多啦太多啦---------------------------------</p>
 <h1>57、你了解的Spring都用到哪些设计模式？</h1>
+<p><strong>九种设计模式</strong>：<br>
+1、简单工厂：BeanFactory<br>
+2、工厂方法<br>
+3、单例模式<br>
+4、适配器模式<br>
+5、装饰器模式<br>
+6、代理模式<br>
+7、观察者模式<br>
+8、策略模式<br>
+9、模板方法模式<br>
+<a href="url">https://blog.csdn.net/weixin_46768610/article/details/128928552</a></p>
 <h1>58、请描述简单工厂模式的工作原理。</h1>
 <h1>59、工厂模式和抽象工厂模式有什么区别？</h1>
 <h1>60、Redis集群的实现原理是什么？</h1>
