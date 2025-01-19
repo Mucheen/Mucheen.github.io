@@ -409,9 +409,25 @@ MySQL中默认的事务隔离级别是可重复读，InnoDB存储引擎的默认
 7、NESTED：在当前事物的内部开启一个新的嵌套事务，嵌套事务是外部事务的一部分。
 
 # 53、说说Springboot的启动流程？
+**大致步骤**：
+1、启动入口：main方法及SpringApplication.run()
+2、初始化SpringApplicaton实例()
+3、配置和执行启动
+4、环境准备
+5、创建和刷新应用上下文
+6、加载和实例化Beam
+7、调用Runner接口
+8、通知启动监听器
 
 # 54、SpringBoot是如何实现自动配置的？
-
+**流程**：
+1、启动主配置类（启动时加载@SpringBootApplication，其中包含@EnableAutoConfiguration（自动配置功能））
+2、解析@EnableAutoConfiguration
+3、加载候选配置类
+4、过滤配置类
+5、加载自动配置类到容器
+6、注册主动配置的Bean
+7、覆盖默认配置
 # 55、如何理解SpringBoot中的starter?
 
 # 56、Spring Boot是如何通过main方法启动web项目的？
