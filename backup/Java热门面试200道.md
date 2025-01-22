@@ -531,6 +531,7 @@ NX：表示key不存在时才能set成功，也即保证只有第一个客户端
 4、ZRANG：按分数从低到高获取有序集合中的元素
 5、ZRANK：获取元素在有序集合中的排名
 逆序则加REV
+[https://blog.csdn.net/weixin_43319056/article/details/142797699](url)
 
 # 66、Redis中如何保证缓存与数据库的一致性？
 
