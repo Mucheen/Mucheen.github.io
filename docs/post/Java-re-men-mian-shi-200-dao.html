@@ -604,6 +604,11 @@ Cancel：取消操作，释放预留的资源，回滚事务。<br>
 5、Etcd<br>
 <a href="url">https://blog.csdn.net/weixin_45422672/article/details/145172852</a></p>
 <h1>72、说说TCP的四次握手？</h1>
+<p>在断开连接之前客户端和服务器都处于ESTABLISHED状态，双方都可以主动断开连接，以客户端主动断开连接最优。<br>
+第一次挥手：客户端打算断开连接，发出连接释放报文段（FIN报文），指定序列号seq=u,主动关闭TCP连接，等待服务器的确认。<br>
+第二次握手：服务器收到连接释放报文段（FIN报文）后，就向客户端发送ACK应答报文，以客户端的FIN报文的序列号seq+1作为ACK应答报文段的确认序列号ack=seq+1=u+1<br>
+第三次握手：<br>
+第四次握手：</p>
 <h1>73、Netty是如何解决粘包和拆包问题的？</h1></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
