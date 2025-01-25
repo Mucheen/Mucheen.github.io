@@ -586,7 +586,23 @@ Cancel：取消操作，释放预留的资源，回滚事务。<br>
 服务器接收到客户端发来的 SYN 包后，对该包进行确认后结束 LISTEN 阶段，并返回一段 TCP 报文<br>
 客户端接收到发送的 SYN + ACK 包后，明确了从客户端到服务器的数据传输是正常的，从而结束 SYN-SENT 阶段。并返回最后一段报文</p>
 <h1>70、简单说说Netty的零拷贝机制？</h1>
+<p><strong>Netty中的零拷贝技术主要是通过优化用户态的操作来提升IO的执行速度，从而实现零拷贝的。</strong><br>
+<strong>实现</strong>：<br>
+1、使用堆外内存：避免JVM内存到堆外内存的数据拷贝，从而提升了IO的操作性能<br>
+2、使用CompositeByteBuf合并对象：可以组合多个Buffer对象合并成一个逻辑上的对象，避免通过传统内存拷贝的方式将几个Buffer合并成一个更大的Buffer<br>
+3、通过Unpooled.wrappedBuffer合并数据：可以将byte数组包装成ByteBuf对象，包装过程中不会产生内存拷贝<br>
+4、使用ByteBuf.slice共享对象：操作与Unpooled.wrappedBuffer相反，slice操作可以将一个ByteBuf对象切分成多个ByteBuf对象，切分过程不会产生内存拷贝，底层共享一个byte数组的存储空间<br>
+5、使用FileRegion实现零拷贝：FileRegion底层封装了FileChannerl#transferTo()方法，可以将文件缓冲区的数据直接传输到目标Channel，避免内核缓存区和用户缓冲区之间的数据拷贝，这属于操作系统级别的零拷贝。<br>
+<a href="url">https://cloud.tencent.com/developer/article/2425733</a></p>
 <h1>71、什么是配置中心？有哪些常见的配置中心？</h1>
+<p><strong>定义</strong>：一种集中管理和存储应用程序配置信息的系统。允许开发人员和运维人员在运行时动态地修改应用程序的配置，而无需重新部署或重启应用。配置中心的主要目的是提高系统的灵活性、可维护性和可拓展性。<br>
+<strong>常见的配置中心</strong>：<br>
+1·、Spring Cloud Config<br>
+2、Nacos<br>
+3、Apollo<br>
+4、Consul<br>
+5、Etcd<br>
+<a href="url">https://blog.csdn.net/weixin_45422672/article/details/145172852</a></p>
 <h1>72、说说TCP的四次握手？</h1>
 <h1>73、Netty是如何解决粘包和拆包问题的？</h1></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
