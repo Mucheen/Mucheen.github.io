@@ -579,6 +579,7 @@ Cancel：取消操作，释放预留的资源，回滚事务。<br>
 不会因为现场创建导致的性能消耗、避免上下文切换引起的CPU消耗、避免了线程之间的竞争问题、代码更清晰，处理逻辑简单<br>
 <strong>第四</strong>：高效的数据结构：Redis使用两个全局哈希表，通过rehash操作，增加现有的哈希桶数量，分散单桶元素数量。从而在减少哈希冲突的同时缩短链表长度，提高Redis的查询效率。<br>
 <strong>第五</strong>：合理的数据编码</p>
+<p>如何使用Redis快速实现布隆过滤器</p>
 <h1>69、说说TCP的三次握手？</h1>
 <p>建立TCP连接的重要过程，确保通信双方能够正确建立连接。<br>
 <strong>过程</strong>：<br>
@@ -617,7 +618,34 @@ Cancel：取消操作，释放预留的资源，回滚事务。<br>
 1、固定长度：服务端和客户端定好每次发送的业务数据包长度，不够长度填充指定的字符，服务端每次按照固定长度进行读取（FixedLengethFrameDecoder固定长度）<br>
 2、分隔符：定好·业务数据分割符，服务端接收数据只有当收到分隔符时，才判断分隔符之前的数据是个完整的业务数据，否则继续等待分隔符（DelimiterBasedFrameDecoder分隔符）<br>
 3、自定义包结构体：每次发送数据同时将数据长度带上，存放数据长度的位置定好。<br>
-<a href="url">https://cloud.tencent.com/developer/article/2197630</a></p></div>
+<a href="url">https://cloud.tencent.com/developer/article/2197630</a></p>
+<h1>74、为什么Java中HashMap的默认负载因子是0.75？</h1>
+<h1>75、如何处理MySQL的主从同步延迟？</h1>
+<h1>76、Netty如何解决JDK NIO中的空轮询Bug?</h1>
+<h1>77、Java中HashMap的扩容机制是怎样的？</h1>
+<h1>78、为什么Redis设计为单线程？6.0版本为何引入多线程？</h1>
+<h1>79、为什TCP挥手需要有TIME_WAIT状态？</h1>
+<h1>80、SpringBoot的核心特性有哪些？</h1>
+<h1>81、为什么HashMap在Java中扩容时采用2的n次方倍？</h1>
+<h1>82、你在项目中使用的Redis客户端是什么？</h1>
+<h1>83、TCP超时重传机制是为了解决什么问题？</h1>
+<h1>84、简述MyBatis的插件运行原理，以及如何编写一个插件？</h1>
+<h1>85、数组和链表在Java中的区别是什么？</h1>
+<h1>86、Redis中常见的数据类型有哪些？</h1>
+<h1>87、TCP滑动窗口的作用是什么？</h1>
+<h1>88、介绍一个Reactor线程模型？</h1>
+<h1>89、Java线程池核心线程数在运行过程中能修改吗？如何修改？</h1>
+<h1>90、TCP/IP四层模型是什么？</h1>
+<h1>91、说说MyBatis的缓存机制？</h1>
+<h1>92、什么是SpringBoot?</h1>
+<h1>93、Java中如何创建多线程？</h1>
+<h1>94、Redis中跳表的实现原理是什么？</h1>
+<h1>95、Redis性能瓶颈时如何处理·？</h1>
+<h1>96、OSI七层模型是什么？</h1>
+<h1>97、说说AQS吧？</h1>
+<h1>98、Cookie、Session、Token之间有什么区别？</h1>
+<h1>99、什么是分库分表？分库分表有哪些类型（或策略）？</h1>
+<h1>100、MyBatis中#{}和${}的区别是什么？</h1></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
