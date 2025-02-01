@@ -687,7 +687,20 @@ HashMap的底层存储结构是一个数组，数组中每一个元素称为桶�
 集成第三方库和框架<br>
 <a href="url">https://blog.csdn.net/Javaaaaaaaaaaa13/article/details/144223458</a></p>
 <h1>81、为什么HashMap在Java中扩容时采用2的n次方倍？</h1>
+<p><strong>原因</strong>：<br>
+1、<strong>提高运算速度</strong>：在HashMap中，元素的位置是通过计算其键的哈希码并将其映射到内部数组的一个索引来确定的。<br>
+2、<strong>减少哈希碰撞</strong>：当HashMap的容量是2的幂次方时，哈希值的分布更加均匀，有助于减少哈希碰撞的发生。<br>
+3、<strong>便于调整大小</strong>：当HashMap需要扩容时，新的容量也是2的幂次方，这使得旧的哈希值在新的容量下重新计算索引时，可以更好地分散到更大的数组中，从而进一步降低哈希碰撞的概率。</p>
 <h1>82、你在项目中使用的Redis客户端是什么？</h1>
+<p><strong>1、Jedis</strong>：简单易用，适合同步操作，需主要多线程问题<br>
+特点：Redis官方推荐的Java客户端，采用同步、阻塞的I/O模型。<br>
+同步阻塞、多线程支持、高性能<br>
+<strong>2、Lettuce</strong>：Spring Boot默认使用的客户端，支持同步和异步，线程安全<br>
+特点：基于Netty的Redis客户端，支持同步和异步操作，连接默认是线程安全的。<br>
+<strong>支持异步、同步和响应式操作</strong>、<strong>线程安全</strong>、<strong>基于Netty</strong><br>
+<strong>3、Redisson</strong>：提供丰富的分布式工具，适合需要分布式锁、分布式集合等高级功能的场景。<br>
+<strong>构建分布式系统</strong>、<strong>支持分布式对象和服务</strong>、<strong>简单易用的API</strong>、<strong>可扩展性强</strong><br>
+<a href="url">https://blog.csdn.net/qq_35861084/article/details/143339834</a></p>
 <h1>83、TCP超时重传机制是为了解决什么问题？</h1>
 <h1>84、简述MyBatis的插件运行原理，以及如何编写一个插件？</h1>
 <h1>85、数组和链表在Java中的区别是什么？</h1>
