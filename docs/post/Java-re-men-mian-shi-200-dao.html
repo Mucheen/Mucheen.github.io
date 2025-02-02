@@ -692,7 +692,7 @@ HashMap的底层存储结构是一个数组，数组中每一个元素称为桶�
 2、<strong>减少哈希碰撞</strong>：当HashMap的容量是2的幂次方时，哈希值的分布更加均匀，有助于减少哈希碰撞的发生。<br>
 3、<strong>便于调整大小</strong>：当HashMap需要扩容时，新的容量也是2的幂次方，这使得旧的哈希值在新的容量下重新计算索引时，可以更好地分散到更大的数组中，从而进一步降低哈希碰撞的概率。</p>
 <h1>82、你在项目中使用的Redis客户端是什么？</h1>
-<p><strong>1、Jedis</strong>：简单易用，适合同步操作，需主要多线程问题<br>
+<p><strong>1、Jedis</strong>：简单易用，适合同步操作，主要多线程问题<br>
 特点：Redis官方推荐的Java客户端，采用同步、阻塞的I/O模型。<br>
 同步阻塞、多线程支持、高性能<br>
 <strong>2、Lettuce</strong>：Spring Boot默认使用的客户端，支持同步和异步，线程安全<br>
@@ -702,8 +702,32 @@ HashMap的底层存储结构是一个数组，数组中每一个元素称为桶�
 <strong>构建分布式系统</strong>、<strong>支持分布式对象和服务</strong>、<strong>简单易用的API</strong>、<strong>可扩展性强</strong><br>
 <a href="url">https://blog.csdn.net/qq_35861084/article/details/143339834</a></p>
 <h1>83、TCP超时重传机制是为了解决什么问题？</h1>
+<p><strong>解决问题</strong>：数据包在传输过程中可能会丢失。<br>
+<strong>目的</strong>：<br>
+确保数据完整性：TCP是连接可靠的传输层协议，保证数据正确无误地源传送到目的地。<br>
+处理网络延迟：网络延迟是数据包传输时间超过预期的时间。</p>
 <h1>84、简述MyBatis的插件运行原理，以及如何编写一个插件？</h1>
+<p><strong>原理</strong>：<br>
+插件加载：MyBatis的插件在启动时通过配置文件中的标签定义和加载。每个插件对应一个实现了org.apache.ibatis.plugin.Interceptor接口的类<br>
+拦截器接口实现：<br>
+动态代理机制<br>
+拦截器链构建与运行<br>
+<strong>基本步骤</strong>：<br>
+1、创建一个类，实现org.apache.ibatis.plugin.Interceptor接口<br>
+2、实现intercept（）方法，其中编写具体拦截处理逻辑<br>
+3、如果需要处理插件自身的属性配置，实现setProties()方法并处理传入的properties参数<br>
+4、在插件类上使用<a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/Signature/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/Signature">@Signature</a>注解来指定要拦截的目标方法签名<br>
+5、在Mybatis的全局配置文件中注册插件，包括插件类的全限定名以及可选的属性配置。<br>
+<a href="url">https://blog.csdn.net/qq_46450354/article/details/144751485</a></p>
 <h1>85、数组和链表在Java中的区别是什么？</h1>
+<p><strong>区别</strong>：<br>
+1、内存存储方式：数组是连续存储的一段空间，而链表非连续<br>
+2、大小灵活性：数组大小在创建时已确定，而链表可以方便添加或删除节点来动态改变链表的长度<br>
+3、插入和删除操作效率：数组中插入或删除元素时，如果操作位置不是在数组末尾，需要移动大量后续元素；链表值需要调整指针即可<br>
+4、访问元素效率：数组由于内存连续存储，可以快速获取，而链表要从头遍历，查找效率低<br>
+5、内存使用效率：数组没有额外的内存开销，而链表每个节点除了存储数据元素外，还需要存储指向下一个节点的指针，因此在内存上使用较多<br>
+总之：数组用于数据量固定、需要频繁访问元素的场景；链表用于数据量动态变化，需要频繁插入和删除操作的场景。<br>
+<a href="url">https://blog.csdn.net/qq_54276699/article/details/144139324</a>**</p>
 <h1>86、Redis中常见的数据类型有哪些？</h1>
 <h1>87、TCP滑动窗口的作用是什么？</h1>
 <h1>88、介绍一个Reactor线程模型？</h1>
