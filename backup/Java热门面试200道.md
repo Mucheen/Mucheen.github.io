@@ -1,4 +1,4 @@
-# 1、Java中HashMap的原理
+[#](url) 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。
 HashMap是基于哈希表的数据结构，用于存储**键值对**（key-value）。其核心是将键的哈希值映射到数组索引位置；通过**数组+链表**（在Java8及之后是**数组+链表+红黑树**）来处理哈希冲突；支持O(1)的平均时间复杂度来执行 put、get和remove操作，但在发生扩容时会有性能开销。默认的负载因子是0.75，容量初始为16，并在超过阈值时扩容
 
@@ -760,17 +760,52 @@ Redis的设计目标是高性能和高并发。采用单线程模型可避免多
 # 87、TCP滑动窗口的作用是什么？
 TCP滑动窗口是TCP协议中的一种流量控制机制，用于调节发送方和接收方之间的数据传输速率，以避免网络拥塞和提高传输效率。
 
+
 # 88、介绍一个Reactor线程模型？
 
 # 89、Java线程池核心线程数在运行过程中能修改吗？如何修改？
+可以修改。通过调用ThreadPoolExecutor类的setCorePoolSize(int corePoolSize)方法来修改核心线程数。
+[https://blog.51cto.com/u_16175471/13080191](url)
 
 # 90、TCP/IP四层模型是什么？
 
 # 91、说说MyBatis的缓存机制？
+**缓存**：
+缓存是存储在内存中的数据。当用户查询数据时，系统可以直接从缓存中获取，而不需要访问数据库，从而提升查询效率。
+**为什么使用缓存**：
+减少数据库交互、提高查询效率、支持高并发
+**使用缓存场景**：
+经常被查询、变化不频繁
+**Mybatis缓存机制**：
+一级缓存（本地缓存）：默认开启，作用域为SqlSession级别（不同的SqlSession缓存不会共享）
+二级缓存（全局缓存）：手动开启，作用域为SqlSessionFactory级别，即同一SqlSessionFactory产生的多个SqlSession共享缓存；缓存的数据时对象的副本，而不是对象本身；
+**缓存失效情况**：
+执行了增删改操作，会清空一级缓存和二级缓存，以保证数据一致性
+SqlSession关闭，手动清除缓存等。
+[https://blog.csdn.net/Future_yzx/article/details/145393846](url)
 
 # 92、什么是SpringBoot?
+用于简化Spring应用程序的创建和部署过程，旨在让开发者更快速地启动和运行Spring项目，通过提供一系列默认配置来减少开发者在配置上的工作量。
+SpringBoot的自动配置是其核心特性之一，@SpringBootApplication是Spring Boot的核心注解，包含@Configuration、@EnableAutoConfiguration、@CompentScan
+@Configuration：当前类是配置类，可以包含Bean的定义
+@EnableAutoConfiguration：启用Spring Boot的自动配置装置，Spring Boot会根据类路径中的库和Bean来配置应用程序
+@ComponentScan：启用组件扫描，自动检测和注册应用程序中的组件。
+[https://blog.csdn.net/molangmolang/article/details/140856126](url)
 
 # 93、Java中如何创建多线程？
+**继承Thread类创建线程**：
+创建一个类继承自Thread类
+重写run方法，在run方法中定义线程要执行的任务
+创建该类的实例，调用start方法启动线程
+**实现Runnable接口创建线程**：
+创建一个类实现Runnable接口
+实现run方法，在run方法中定义线程要执行的任务
+创建Runnable接口实现类的实例，将其作为参数传递给Thread类的构造函数，然后调用start方法启动线程 
+**实现Callable接口创建线程**：
+**使用线程池创建线程**：
+通过Executor工具类的静态方法创建一个线程池对象，或者直接使用ThreadPoolExecutor类来创建自定义的线程池
+创建Runnable或Collable接口实现类的实例，作为任务提交给线程池。对于Runnable任务，可以使用execue方法提交；对于Callable任务，使用submit提交
+[https://blog.csdn.net/weixin_64726356/article/details/143865586](url)
 
 # 94、Redis中跳表的实现原理是什么？
 

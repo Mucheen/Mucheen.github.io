@@ -10,10 +10,10 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 1、Java中HashMap的原理
+<meta name="description" content="[#](url) 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。">
 <meta property="og:title" content="Java热门面试200道">
-<meta property="og:description" content="# 1、Java中HashMap的原理
+<meta property="og:description" content="[#](url) 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Mucheen.github.io/post/Java-re-men-mian-shi-200-dao.html">
@@ -75,8 +75,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>1、Java中HashMap的原理</h1>
-<p><strong>简洁回答</strong>：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。<br>
+<div class="markdown-body" id="postBody"><p><a href="url">#</a> 1、Java中HashMap的原理<br>
+<strong>简洁回答</strong>：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。<br>
 HashMap是基于哈希表的数据结构，用于存储<strong>键值对</strong>（key-value）。其核心是将键的哈希值映射到数组索引位置；通过<strong>数组+链表</strong>（在Java8及之后是<strong>数组+链表+红黑树</strong>）来处理哈希冲突；支持O(1)的平均时间复杂度来执行 put、get和remove操作，但在发生扩容时会有性能开销。默认的负载因子是0.75，容量初始为16，并在超过阈值时扩容</p>
 <h1>2、Java中ConcurrentHashMap 1.7和1.8之间有哪些区别？</h1>
 <p><strong>JDK 1.7</strong> ConcurrentHashMap采用的是分段锁，即每个Segment是独立的，可以并发访问不同的Segment，默认是16个Segment，所以最多有16个线程可以并发执行。而JDK 1,8移除了Segment，锁的粒度变得更加细化，锁只在链表或红黑树的节点级别上进行。通过CAS进行插入操作，只有在更新链表或红黑树时才使用synchronized，并且只锁住链表或树的头节点，进一步减少了锁的竞争，并发度大大增加。</p>
@@ -743,10 +743,44 @@ HashMap的底层存储结构是一个数组，数组中每一个元素称为桶�
 <p>TCP滑动窗口是TCP协议中的一种流量控制机制，用于调节发送方和接收方之间的数据传输速率，以避免网络拥塞和提高传输效率。</p>
 <h1>88、介绍一个Reactor线程模型？</h1>
 <h1>89、Java线程池核心线程数在运行过程中能修改吗？如何修改？</h1>
+<p>可以修改。通过调用ThreadPoolExecutor类的setCorePoolSize(int corePoolSize)方法来修改核心线程数。<br>
+<a href="url">https://blog.51cto.com/u_16175471/13080191</a></p>
 <h1>90、TCP/IP四层模型是什么？</h1>
 <h1>91、说说MyBatis的缓存机制？</h1>
+<p><strong>缓存</strong>：<br>
+缓存是存储在内存中的数据。当用户查询数据时，系统可以直接从缓存中获取，而不需要访问数据库，从而提升查询效率。<br>
+<strong>为什么使用缓存</strong>：<br>
+减少数据库交互、提高查询效率、支持高并发<br>
+<strong>使用缓存场景</strong>：<br>
+经常被查询、变化不频繁<br>
+<strong>Mybatis缓存机制</strong>：<br>
+一级缓存（本地缓存）：默认开启，作用域为SqlSession级别（不同的SqlSession缓存不会共享）<br>
+二级缓存（全局缓存）：手动开启，作用域为SqlSessionFactory级别，即同一SqlSessionFactory产生的多个SqlSession共享缓存；缓存的数据时对象的副本，而不是对象本身；<br>
+<strong>缓存失效情况</strong>：<br>
+执行了增删改操作，会清空一级缓存和二级缓存，以保证数据一致性<br>
+SqlSession关闭，手动清除缓存等。<br>
+<a href="url">https://blog.csdn.net/Future_yzx/article/details/145393846</a></p>
 <h1>92、什么是SpringBoot?</h1>
+<p>用于简化Spring应用程序的创建和部署过程，旨在让开发者更快速地启动和运行Spring项目，通过提供一系列默认配置来减少开发者在配置上的工作量。<br>
+SpringBoot的自动配置是其核心特性之一，<a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/SpringBootApplication/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/SpringBootApplication">@SpringBootApplication</a>是Spring Boot的核心注解，包含<a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/configuration/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/configuration">@configuration</a>、@EnableAutoConfiguration、@CompentScan<br>
+<a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/configuration/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/configuration">@configuration</a>：当前类是配置类，可以包含Bean的定义<br>
+@EnableAutoConfiguration：启用Spring Boot的自动配置装置，Spring Boot会根据类路径中的库和Bean来配置应用程序<br>
+<a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/componentscan/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/componentscan">@componentscan</a>：启用组件扫描，自动检测和注册应用程序中的组件。<br>
+<a href="url">https://blog.csdn.net/molangmolang/article/details/140856126</a></p>
 <h1>93、Java中如何创建多线程？</h1>
+<p><strong>继承Thread类创建线程</strong>：<br>
+创建一个类继承自Thread类<br>
+重写run方法，在run方法中定义线程要执行的任务<br>
+创建该类的实例，调用start方法启动线程<br>
+<strong>实现Runnable接口创建线程</strong>：<br>
+创建一个类实现Runnable接口<br>
+实现run方法，在run方法中定义线程要执行的任务<br>
+创建Runnable接口实现类的实例，将其作为参数传递给Thread类的构造函数，然后调用start方法启动线程<br>
+<strong>实现Callable接口创建线程</strong>：<br>
+<strong>使用线程池创建线程</strong>：<br>
+通过Executor工具类的静态方法创建一个线程池对象，或者直接使用ThreadPoolExecutor类来创建自定义的线程池<br>
+创建Runnable或Collable接口实现类的实例，作为任务提交给线程池。对于Runnable任务，可以使用execue方法提交；对于Callable任务，使用submit提交<br>
+<a href="url">https://blog.csdn.net/weixin_64726356/article/details/143865586</a></p>
 <h1>94、Redis中跳表的实现原理是什么？</h1>
 <h1>95、Redis性能瓶颈时如何处理·？</h1>
 <h1>96、OSI七层模型是什么？</h1>
