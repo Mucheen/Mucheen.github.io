@@ -818,7 +818,16 @@ SpringBoot的自动配置是其核心特性之一，<a class="user-mention notra
 物理层：将信息编码成电流脉冲或其它信号用于网上传输<br>
 <a href="url">https://zhuanlan.zhihu.com/p/685931989</a></p>
 <h1>97、说说AQS吧？</h1>
+<p>AQS是Java中用于构建锁和其他同步器的基础框架。AQS的核心思想是基于队列的同步器，通过一个先进先出的等待队列来管理线程的排队和唤醒，可以实现各种自定义的同步器，包括互斥锁、信号量、倒计时器等（基于模板方法模式）。<br>
+<strong>数据结构</strong>：一个整型的state变量，用于表示同步状态，通过state变量来实现线程的排队和幻想以及锁的获取和释放。<br>
+<strong>实现方法</strong>：<br>
+独占模式方法：实现独占锁，即占有一个线程能够获取到锁<br>
+共享模式方法：实现共享锁，多个线程可以同时获取到锁<br>
+<a href="url">https://blog.csdn.net/qq_67358181/article/details/138729420</a></p>
 <h1>98、Cookie、Session、Token之间有什么区别？</h1>
+<p>Token：验证用户身份的令牌，通常用于接口的身份验证，一般获取之后放在请求头中<br>
+Session：服务器为了方便存储用户会话信息产生的，客户端访问服务器时，服务器会给每个访问对象创建一个的sessionID存储在服务器，客户端通常会将sessionID存储在cookie中，在发送请求时一并发给服务器<br>
+Cookie：服务器发送到客户端然后存储在客户端的，可以用来保持用户的登录信息</p>
 <h1>99、什么是分库分表？分库分表有哪些类型（或策略）？</h1>
 <h1>100、MyBatis中#{}和${}的区别是什么？</h1></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
