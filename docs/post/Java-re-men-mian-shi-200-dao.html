@@ -10,10 +10,10 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="[#](url) 1、Java中HashMap的原理
+<meta name="description" content="# 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。">
 <meta property="og:title" content="Java热门面试200道">
-<meta property="og:description" content="[#](url) 1、Java中HashMap的原理
+<meta property="og:description" content="# 1、Java中HashMap的原理
 **简洁回答**：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Mucheen.github.io/post/Java-re-men-mian-shi-200-dao.html">
@@ -75,8 +75,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p><a href="url">#</a> 1、Java中HashMap的原理<br>
-<strong>简洁回答</strong>：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。<br>
+<div class="markdown-body" id="postBody"><h1>1、Java中HashMap的原理</h1>
+<p><strong>简洁回答</strong>：哈希函数映射到数组桶；哈希冲突通过链表或红黑树处理；扩容机制根据负载因子和容量动态调整。<br>
 HashMap是基于哈希表的数据结构，用于存储<strong>键值对</strong>（key-value）。其核心是将键的哈希值映射到数组索引位置；通过<strong>数组+链表</strong>（在Java8及之后是<strong>数组+链表+红黑树</strong>）来处理哈希冲突；支持O(1)的平均时间复杂度来执行 put、get和remove操作，但在发生扩容时会有性能开销。默认的负载因子是0.75，容量初始为16，并在超过阈值时扩容</p>
 <h1>2、Java中ConcurrentHashMap 1.7和1.8之间有哪些区别？</h1>
 <p><strong>JDK 1.7</strong> ConcurrentHashMap采用的是分段锁，即每个Segment是独立的，可以并发访问不同的Segment，默认是16个Segment，所以最多有16个线程可以并发执行。而JDK 1,8移除了Segment，锁的粒度变得更加细化，锁只在链表或红黑树的节点级别上进行。通过CAS进行插入操作，只有在更新链表或红黑树时才使用synchronized，并且只锁住链表或树的头节点，进一步减少了锁的竞争，并发度大大增加。</p>
@@ -782,8 +782,41 @@ SpringBoot的自动配置是其核心特性之一，<a class="user-mention notra
 创建Runnable或Collable接口实现类的实例，作为任务提交给线程池。对于Runnable任务，可以使用execue方法提交；对于Callable任务，使用submit提交<br>
 <a href="url">https://blog.csdn.net/weixin_64726356/article/details/143865586</a></p>
 <h1>94、Redis中跳表的实现原理是什么？</h1>
+<p><strong>原理</strong>：扩展的有序链表，通过维护一个多级索引结构实现快速查找。在跳跃表中，每个节点包含一个数据元素和一组指向其他节点的指针。这些指针分布在不同层级，每个层级的指针数量都比下一层少。最底层包含所有元素，最高层包含少数几个元素<br>
+<strong>查找性能</strong>：平均O(log N)、最坏O(N)<br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6e7b5a47-b00a-4039-ac6a-ae100e4ac554"><img src="https://github.com/user-attachments/assets/6e7b5a47-b00a-4039-ac6a-ae100e4ac554" alt="Image" style="max-width: 100%;"></a><br>
+<a href="url">https://cloud.tencent.com/developer/article/2419519</a></p>
 <h1>95、Redis性能瓶颈时如何处理·？</h1>
+<p><strong>内存使用过高</strong><br>
+内存使用过高时，会引发如系统性能下降、内存溢出等问题<br>
+优化方法：<br>
+定期清理过期数据<br>
+数据压缩<br>
+分库分表<br>
+<strong>CPU使用率过高</strong><br>
+避免使用复杂的命令<br>
+限制数据写入速率<br>
+优化数据结构和算法<br>
+<strong>网络I/O瓶颈</strong><br>
+增加网络带宽<br>
+数据本地缓存<br>
+部署Redis集群<br>
+<strong>持久化操作影响性能</strong><br>
+合理配置持久化策略<br>
+调整持久化频率<br>
+<strong>大键值对的问题</strong><br>
+拆分大键<br>
+避免存储过大的值<br>
+<a href="url">https://blog.csdn.net/yvchiby/article/details/140874581</a></p>
 <h1>96、OSI七层模型是什么？</h1>
+<p>应用层：规定数据的传输协议（HTTP、POP、SMTP等等）<br>
+表示层：解决不同系统之间的通信<br>
+会话层：会话层建立、管理和终止表示层与实体之间的通信会话<br>
+传输层：向高层提供可靠的端到端的网络数据流服务（端口与端口的通信）<br>
+网络层：负责在源和终点之间建立连接<br>
+数据链路层：规定了0和1的分包形式，确定了网络数据包的形式<br>
+物理层：将信息编码成电流脉冲或其它信号用于网上传输<br>
+<a href="url">https://zhuanlan.zhihu.com/p/685931989</a></p>
 <h1>97、说说AQS吧？</h1>
 <h1>98、Cookie、Session、Token之间有什么区别？</h1>
 <h1>99、什么是分库分表？分库分表有哪些类型（或策略）？</h1>
